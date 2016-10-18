@@ -21,9 +21,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
 
 <!--
-Loads Polymer element and behavior documentation using
-[Hydrolysis](https://github.com/PolymerLabs/hydrolysis) and renders a complete
-documentation page including demos (if available).
+使用加载聚合物元素和行为文档
+[水解](https://github.com/PolymerLabs/hydrolysis)并呈现完整
+文档页面包括演示（如果可用）.
 -->
 
 <dom-module id="iron-component-page">
@@ -205,7 +205,7 @@ documentation page including demos (if available).
     <paper-header-panel id="headerPanel" mode="[[scrollMode]]">
       <paper-toolbar catalog-hidden>
         <div class="docs-header">
-          <!-- TODO: Replace with paper-dropdown-menu when available -->
+          <!-- TODO：如果可用，请用纸张下拉菜单替换 -->
           <select id="active" value="[[active]]" on-change="_handleMenuItemSelected">
             <template is="dom-repeat" items="[[docElements]]">
               <option value="[[item.is]]">[[item.is]]</option>
@@ -216,8 +216,8 @@ documentation page including demos (if available).
           </select>
         </div>
         <iron-selector attr-for-selected="view" selected="{{view}}" id="links" hidden$="[[!docDemos.length]]">
-          <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
-          <a view="[[_demoView(docDemos.0.path)]]"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></a>
+          <a view="docs"><iron-icon icon="description"></iron-icon> 文档</a>
+          <a view="[[_demoView(docDemos.0.path)]]"><iron-icon icon="visibility"></iron-icon> <span>演示</span></a>
         </iron-selector>
       </paper-toolbar>
       <div id="content">
@@ -229,7 +229,7 @@ documentation page including demos (if available).
             <iron-doc-viewer prefix="[[_fragmentPrefix]]" id="viewer" descriptor="{{_activeDescriptor}}"
               on-iron-doc-viewer-component-selected="_handleComponentSelectedEvent"></iron-doc-viewer>
             <div id="nodocs" hidden$="[[_activeDescriptor]]" class="no-docs">
-              No documentation found.
+              未找到文档.
             </div>
           </div>
           <div id="demo"></div>
@@ -244,9 +244,9 @@ documentation page including demos (if available).
 
       /**
        * @param {string} url
-       * @return {string} `url` stripped of a file name, if one is present. This
-       *     considers URLs like "example.com/foo" to already be a base (no `.` is)
-       *     present in the final path part).
+       * @return {string} `url` 删除文件名（如果存在）。 这个
+        *认为像“example.com/foo”这样的网址已经是基地 (no `.` is)
+        *存在于最终路径部分中）.
        */
       function _baseUrl(url) {
         return url.match(/^(.*?)\/?([^\/]+\.[^\/]+)?$/)[1] + '/';
@@ -257,15 +257,15 @@ documentation page including demos (if available).
 
         properties: {
           /**
-           * The URL to an import that declares (or transitively imports) the
-           * elements that you wish to see documented.
+           *指向声明（或传递导入）的导入的网址
+            *您希望看到的文档.
            *
-           * If the URL is relative, it will be resolved relative to the master
-           * document.
+           *如果URL是相对的，它将相对于主机解析
+            *文件.
            *
-           * If a `src` URL is not specified, it will resolve the name of the
-           * directory containing this element, followed by `dirname.html`. For
-           * example:
+           * 如果没有指定`src` URL，它将解析的名称
+            *包含此元素的目录，后跟`dirname.html`。 对于
+            *示例:
            *
            * `awesome-sauce/index.html`:
            *
@@ -279,12 +279,12 @@ documentation page including demos (if available).
           },
 
           /**
-           * The URL to a precompiled JSON descriptor. If you have precompiled
-           * and stored a documentation set using Hydrolysis, you can load the
-           * analyzer directly via AJAX by specifying this attribute.
-           *
-           * If a `doc-src` is not specified, it is ignored and the default
-           * rules according to the `src` attribute are used.
+           *预编译JSON描述符的URL。 如果你已经预编译
+            *并使用Hydrolysis存储文档集，可以加载
+            *分析器直接通过AJAX指定此属性。
+            *：
+            *如果没有指定`doc-src`，它将被忽略和默认值
+            *使用根据`src`属性的规则.
            */
           docSrc: {
             type: String,
@@ -292,8 +292,8 @@ documentation page including demos (if available).
           },
 
           /**
-           * The name of a branch used to fetch source for gh-pages.
-           * If not specified `master` is used.
+           *用于获取gh页面的源代码的分支的名称。
+            *如果未指定`master`被使用.
            */
           branchName: {
             type: String,
@@ -301,20 +301,20 @@ documentation page including demos (if available).
           },
 
           /**
-           * The relative root for determining paths to demos and default source
-           * detection.
+           * 用于确定演示路径和默认源的相对根
+            *检测.
            */
           base: {
             type: String,
             value: function() {
-              // Don't include URL hash.
+              // 不包括网址哈希。
               return this.ownerDocument.baseURI.replace(/\#.*$/, '');
             }
           },
 
           /**
-           * The element or behavior that will be displayed on the page. Defaults
-           * to the element matching the name of the source file.
+           *将显示在页面上的元素或行为。 默认值
+            *到与源文件名称匹配的元素.
            */
           active: {
             type: String,
@@ -323,7 +323,7 @@ documentation page including demos (if available).
           },
 
           /**
-           * The current view. Can be `docs` or `demo`.
+           * 当前视图。 可以是`docs`或 `demo`.
            */
           view: {
             type: String,
@@ -332,16 +332,16 @@ documentation page including demos (if available).
           },
 
           /**
-           * Whether _all_ dependencies should be loaded and documented.
-           *
-           * Turning this on will probably slow down the load process dramatically.
+           * Whether _all_ dependencies 应加载并记录。
+            *：
+            *开启此功能可能会大大减慢加载过程.
            */
           transitive: {
             type: Boolean,
             value: false
           },
 
-          /** The Hydrolysis element descriptors that have been loaded. */
+          /** 已加载的水解元素描述符. */
           docElements: {
             type:     Array,
             notify: true,
@@ -351,7 +351,7 @@ documentation page including demos (if available).
             }
           },
 
-          /** The Hydrolysis behavior descriptors that have been loaded. */
+          /**已加载的水解行为描述符. */
           docBehaviors: {
             type:     Array,
             notify: true,
@@ -362,7 +362,7 @@ documentation page including demos (if available).
           },
 
           /**
-           * Demos for the currently selected element.
+           * 演示当前选定的元素.
            */
           docDemos: {
             type: Array,
@@ -371,8 +371,8 @@ documentation page including demos (if available).
           },
 
           /**
-           * The scroll mode for the page. For details about the modes,
-           * see the mode property in paper-header-panel.
+           * 页面的滚动模式。 有关模式的详细信息，
+            *看到的mode属性paper-header-panel.
            */
           scrollMode: {
             type: String,
@@ -380,7 +380,7 @@ documentation page including demos (if available).
           },
 
           /**
-           * The currently displayed element.
+           * 当前显示的元素.
            *
            * @type {!hydrolysis.ElementDescriptor}
            */
@@ -389,8 +389,8 @@ documentation page including demos (if available).
           _fragmentPrefix: String,
 
           /**
-           * Toggle flag to be used when this element is being displayed in the
-           * Polymer Elements catalog.
+           *切换在此元素显示时使用的标志
+            *聚合物元素目录.
            */
           catalog: {
             type: Boolean,
@@ -399,12 +399,12 @@ documentation page including demos (if available).
           },
 
           /**
-           * An optional version string.
+           * 可选的版本字符串.
            */
           version: String,
 
           /**
-           * The hydrolysis analyzer.
+           *水解分析仪.
            *
            * @type {!hydrolysis.Analyzer}
            */
@@ -421,7 +421,7 @@ documentation page including demos (if available).
             observer: '_detectAnalyzer'
           },
 
-          /** Whether the analyzer is loading source. */
+          /**分析仪是否正在加载源. */
           _loading: {
             type:     Boolean,
             observer: '_loadingChanged',
@@ -435,13 +435,13 @@ documentation page including demos (if available).
             observer: '_detectLoading'
           },
 
-          /** The complete URL to this component's demo. */
+          /** 此组件的完整URL示例。 */
           _demoUrl: {
             type: String,
             value: '',
           },
 
-          /** The complete URL to this component's source. */
+          /**此组件源的完整URL. */
           _srcUrl: String,
         },
 
@@ -451,7 +451,7 @@ documentation page including demos (if available).
         ],
 
         attached: function() {
-          // In the catalog, let the catalog do all the routing
+          //在目录中，让目录做所有的路由
           if (!this.catalog) {
             this._setActiveFromHash();
             this.listen(window, 'hashchange', '_setActiveFromHash');
@@ -470,7 +470,7 @@ documentation page including demos (if available).
             this.docElements = elements;
             this._loading  = false;
           } else {
-            // Make sure our change handlers trigger in all cases.
+            //确保您的更改处理程序在所有情况下都触发.
             if (!this.src && !this.catalog) {
               this._srcChanged();
             }
@@ -478,10 +478,10 @@ documentation page including demos (if available).
         },
 
         /**
-         * Loads an array of hydrolysis element descriptors (as JSON) from the text
-         * content of this element, if present.
+         *从文本中加载水解元素描述符（如JSON）数组
+          *该元素的含量（如果存在）.
          *
-         * @return {Array<hydrolysis.ElementDescriptor>} The descriptors, or `null`.
+         * @return {Array<hydrolysis.ElementDescriptor>}描述符，或 `null`.
          */
         _loadJson: function() {
           var textContent = '';
@@ -502,11 +502,11 @@ documentation page including demos (if available).
         },
 
         /**
-         * Load the page identified in the fragment identifier.
+         *加载在片段标识符中标识的页面。
          */
 
         _setActiveFromHash: function(hash) {
-          // hash is either element-name or element-name:{properties|methods|events} or
+          // 哈希是 element-name 或 element-name:{properties|methods|events} 或
           // element-name:{property|method|event}.member-name
           var hash = window.location.hash;
           if (hash) {
@@ -538,7 +538,7 @@ documentation page including demos (if available).
             srcUrl = new URL(base.match(/([^\/]*)\/$/)[1] + ".html", base).toString();
           }
 
-          // Rewrite gh-pages URLs to https://rawgit.com/
+          //将gh-pages网址重写为 https://rawgit.com/
           var match = srcUrl.match(/([^\/\.]+)\.github\.io\/([^\/]+)\/?([^\/]*)$/);
           if (match) {
             srcUrl = "https://cdn.rawgit.com/" + match[1] + "/" + match[2] + "/" + this.branchName + "/" + match[3];
@@ -556,8 +556,8 @@ documentation page including demos (if available).
           var demoSrc = new URL(src, this.base).toString();
           var self = this;
 
-          // If you use history.pushState with iframe.src = url, you will create 2 history entries,
-          // but creating a new iframe dynamically will prevent it.
+          //如果您使用history.pushState with iframe.src = url，您将创建2个历史记录条目，
+           //但是动态创建一个新的iframe会阻止它。
           if (this._iframe) {
             Polymer.dom(this.$.demo).removeChild(this._iframe);
           }
@@ -565,10 +565,10 @@ documentation page including demos (if available).
           this._iframe.src = demoSrc;
           this._iframe.allowFullscreen = true;
 
-          // Fixes iron-component-page/issues/80
-          // Scrollbar issue in desktop/mobile Safari that prevents the user
-          // from scrolling the demos. In this case, we need to force layout
-          // in the main document when the iframe content has been fully rendered.
+         // Fixes iron-component-page / issues / 80
+           //在桌面/移动Safari中的滚动条问题阻止用户
+           //滚动演示。 在这种情况下，我们需要强制布局
+           //在主文档中iframe内容已完全呈现。
           this._iframe.style.height = '0%';
           this._iframe.addEventListener('load', function() {
             var win = self._iframe.contentWindow;
@@ -670,9 +670,9 @@ documentation page including demos (if available).
               } else {
                 this._fragmentPrefix = '';
               }
-              // On initial load, scroll to the selected anchor (if any).
-              // This probably shouldn't be required when we're running
-              // in the catalog, but at the moment it is.
+    //在初始加载时，滚动到所选锚点（如果有）。
+               //这可能不应该在我们运行时需要
+               //在目录中，但在目前它是。
               this.$.viewer.scrollToAnchor(window.location.hash);
             }
             this._setDocDemos(this._activeDescriptor ? this._activeDescriptor.demos : []);
@@ -728,13 +728,13 @@ documentation page including demos (if available).
         },
 
         /**
-         * Renders this element into static HTML for offline use.
-         *
-         * This is mostly useful for debugging and one-off documentation generation.
-         * If you want to integrate doc generation into your build process, you
-         * probably want to be calling `hydrolysis.Analyzer.analyze()` directly.
-         *
-         * @return {string} The HTML for this element with all state baked in.
+        *将此元素呈现为静态HTML以供离线使用。
+          *：
+          *这主要用于调试和一次性文档生成。
+          *如果你想将doc生成整合到你的构建过程中，你
+          *可能想直接调用'hydrolysis.Analyzer.analyze（）'。
+          *：
+          * @return {string}包含所有状态的此元素的HTML。
          */
         marshal: function() {
           var jsonText = JSON.stringify(this.docElements || [], null, '  ');
